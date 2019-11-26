@@ -38,9 +38,9 @@ public class AdController {
         return adRepository.findByOwner(owner);
     }
 
-    @PostMapping(value="/ad/search/owner", consumes = "application/json", produces = "application/json")
+    @PostMapping(value="/ad/search/title", consumes = "application/json", produces = "application/json")
     public List<Ad> findByTitle(@RequestBody Map<String, String> body) {
-        String title = body.get("titlw");
+        String title = body.get("title");
 
         return adRepository.findByTitle(title);
     }
