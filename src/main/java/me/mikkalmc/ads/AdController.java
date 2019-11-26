@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,4 +30,25 @@ public class AdController {
         Integer price =  Integer.parseInt(body.get("price"));
         return adRepository.save(new Ad(owner, title, description, price));
     }
+    
+    @PostMapping(value="/ad/search/owner", consumes = "application/json", produces = "application/json")
+    public List<Ad> findByOwner(@RequestBody Map<String, String> body) {
+        String owner = body.get("owner");
+
+        return adRepository.findByOwner(owner);
+    }
+
+    @PostMapping(value="/ad/search/owner", consumes = "application/json", produces = "application/json")
+    public List<Ad> findByTitle(@RequestBody Map<String, String> body) {
+        String title = body.get("titlw");
+
+        return adRepository.findByTitle(title);
+    }
+
+    @DeleteMapping(value = "/ad/{id}", consumes = "application/json", produces = "application/json")
+    public boolean delete(@PathVariable String id){
+        int bookId = Integer.parseInt(id);
+        adRepository.deleteById(bookId);
+        return true;
+    } 
 }
