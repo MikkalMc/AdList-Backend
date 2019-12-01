@@ -1,4 +1,5 @@
 package me.mikkalmc.ads;
+
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,9 +23,7 @@ public class Ad {
     public String description;
     public Integer price;
 
-    protected Ad() {
-
-    }
+    protected Ad() {}
 
     public Ad(String owner, String title, String description, Integer price) {
         this.owner = owner;
