@@ -64,11 +64,11 @@
 		</dependency>
 
 <!-- auth0 for jwt generation -->
-		 <!-- <dependency>
+		 <dependency>
             <groupId>com.auth0</groupId>
             <artifactId>auth0-spring-security-api</artifactId>
             <version>1.0.0-rc.3</version>
-        </dependency> -->
+        </dependency>
 	</dependencies>
 
 	<build>

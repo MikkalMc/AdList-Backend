@@ -11,41 +11,34 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-@Entity
 @EqualsAndHashCode
 @Data
 @Table(name="user")
-public class User {
+@Entity
+public class ApplicationUser {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     @Column(name = "user_id")
     public Integer id;
 
-    @NotEmpty(message = "Please provide email")
-    @Column(name = "email")
-    private String email;
+    @NotEmpty(message = "Please provide username")
+    @Column(name = "username")
+    private String username;
 
     @NotEmpty(message = "Please provide password")
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    protected ApplicationUser() {}
 
-    protected User() {}
-
-    public User(String email, String password) {
-        this.email = email;
+    public ApplicationUser(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
@@ -57,28 +50,25 @@ public class User {
     }
 
     /**
-     * @param roles the roles to set
+     * @param username the username to set
      */
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
         return this.password;
     }
 
+    public String getUsername() {
+        return this.username;
+    }
+
     @Override
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", email='" + email + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';
     }

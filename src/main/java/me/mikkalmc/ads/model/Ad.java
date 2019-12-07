@@ -3,7 +3,7 @@ package me.mikkalmc.ads.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import me.mikkalmc.login.model.User;
+import me.mikkalmc.login.model.ApplicationUser;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -37,7 +37,7 @@ public class Ad {
 
     @ManyToOne
     @JoinColumn(name="user_id")
-    private User user;
+    private ApplicationUser user;
 
     @Override
     public String toString() {
