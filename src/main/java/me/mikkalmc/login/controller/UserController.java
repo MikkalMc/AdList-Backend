@@ -1,4 +1,4 @@
-package me.mikkalmc.users;
+package me.mikkalmc.login.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -9,23 +9,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import me.mikkalmc.login.model.User;
+import me.mikkalmc.login.repository.UserRepository;
+import me.mikkalmc.login.service.UserService;
+
 @RestController
 public class UserController {
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    UserService userService;
 
     @GetMapping("/user")
     public List<User> index() {
         return userRepository.findAll();
     }
 
-    @PostMapping(path = "/user", consumes = "application/json", produces = "application/json")
-    public User create(@RequestBody Map<String, String> body){
+    @PostMapping(path = "/registration", consumes = "application/json", produces = "application/json")
+    public User createUser(@RequestBody Map<String, String> body){
         System.out.println(body);
-        String firstName = body.get("firstName");
-        String lastName = body.get("lastName");
+        String email = body.get("email");
         String password = body.get("password");
+        User newUser = new User(email, password);
 
-        return userRepository.save(new User(firstName, lastName, password));
+        return this.userService.saveUser(newUser);
     }
 }

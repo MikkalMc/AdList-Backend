@@ -1,4 +1,4 @@
-package me.mikkalmc.ads;
+package me.mikkalmc.ads.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import me.mikkalmc.ads.model.Ad;
+import me.mikkalmc.ads.repository.AdRepository;
 
 @RestController
 public class AdController {

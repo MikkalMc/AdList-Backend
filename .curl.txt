@@ -1,0 +1,14 @@
+// ADD A USER
+curl -X POST -H "Content-Type:application/json" -d '{
+    "firstName": "Mikkal",
+    "lastName": "McNulty",
+    "password": "password"
+}' http://localhost:8080/user
+
+// ADD AN AD
+curl -X POST -H "Content-Type:application/json" -d '{
+    "owner": "me",
+    "title": "My Car",
+    "description": "Pretty awesome but, unfortunately, I have to sell it.",
+    "price": 225
+}' http://localhost:8080/ad

@@ -1,8 +1,10 @@
-package me.mikkalmc.ads;
+package me.mikkalmc.ads.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import me.mikkalmc.ads.model.Ad;
 
 public interface AdRepository extends JpaRepository<Ad, Integer> {
     
