@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -53,6 +54,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String token = JWT.create().withSubject(((User) auth.getPrincipal()).getUsername())
                 .withExpiresAt(new Date(System.currentTimeMillis() + EXPIRATION_TIME)).sign(HMAC512(SECRET.getBytes()));
+        res.addHeader("Access-Control-Expose-Headers", "Authorization");
         res.addHeader(HEADER_STRING, TOKEN_PREFIX + token);
+        // res.addCookie(new Cookie("token", TOKEN_PREFIX + token));
     }
 }
