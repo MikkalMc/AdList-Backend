@@ -3,14 +3,11 @@ package me.mikkalmc.ads.model;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import me.mikkalmc.login.model.ApplicationUser;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
 @Entity
 @Getter
@@ -21,6 +18,7 @@ public class Ad {
     @GeneratedValue(strategy = GenerationType.AUTO)
     public Integer id;
     
+    public Integer userID;
     public String owner;
     public String title;
     public String description;
@@ -28,16 +26,13 @@ public class Ad {
 
     protected Ad() {}
 
-    public Ad(String owner, String title, String description, Integer price) {
+    public Ad(String owner, String title, String description, Integer price, Integer userID) {
         this.owner = owner;
         this.title = title;
         this.description = description;
         this.price = price;
+        this.userID = userID;
     }
-
-    @ManyToOne
-    @JoinColumn(name="user_id")
-    private ApplicationUser user;
 
     @Override
     public String toString() {
@@ -47,6 +42,7 @@ public class Ad {
                 ", title='" + title + '\'' +
                 ", content='" + description + '\'' +
                 ", price='" + price + '\'' +
+                ", userID='" + userID + '\'' +
                 '}';
     }
 }

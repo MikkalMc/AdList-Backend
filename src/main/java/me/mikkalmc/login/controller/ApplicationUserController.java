@@ -29,6 +29,13 @@ public class ApplicationUserController {
         return userRepository.findAll();
     }
 
+    @PostMapping(path = "/info", consumes = "application/json", produces = "application/json")
+    public ApplicationUser getUserInfo(@RequestBody Map<String, String> body) {
+        System.out.println("hey " + body);
+        String username = body.get("username");
+        return this.userRepository.findByUsername(username);
+    }
+
     @PostMapping(path = "/registration", consumes = "application/json", produces = "application/json")
     public ApplicationUser createUser(@RequestBody Map<String, String> body){
         System.out.println(body);

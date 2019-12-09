@@ -27,11 +27,12 @@ public class AdController {
     @PostMapping(path = "/ad", consumes = "application/json", produces = "application/json")
     public Ad create(@RequestBody Map<String, String> body){
         System.out.println(body);
+        Integer userID = Integer.parseInt(body.get("userID"));
         String owner = body.get("owner");
         String title = body.get("title");
         String description = body.get("description");
         Integer price =  Integer.parseInt(body.get("price"));
-        return adRepository.save(new Ad(owner, title, description, price));
+        return adRepository.save(new Ad(owner, title, description, price, userID));
     }
     
     @PostMapping(value="/ad/search/owner", consumes = "application/json", produces = "application/json")
